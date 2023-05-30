@@ -1,0 +1,977 @@
+/*================================= FONTS ===================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); /* adding a font style from google */
+/*===========================================================================*/
+
+/*================= DEFAULT FOR THE WHOLE PAGE ====================*/
+* {/* standard styling */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cursor {/*to style my cursor. to also be worked on my script*/
+  position: fixed;
+  z-index: 999;
+  background-color: var(--bg-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px 5px var(--main-color);
+}
+  
+
+/* To add a outer style */
+.cursor::before{
+  content: '';
+  position: absolute;
+  background: var(--bg-color);
+  width: 50px;
+  height: 50px;
+  opacity: 0.2;
+  transform: translate(-30%, -30%);
+  border-radius: 50%;
+
+}
+
+/*========= here ill make a Variable to make it easier for me to have a uniform designs =========*/
+/*========= This help me a lot to not back and copy paste the colors =============*/
+/*========= This also helped me to do my dark mode =================*/
+:root{
+/*-------------Colors ------------------*/
+  --body-light-color:#fffffc;
+  --body-dark-color: #1c1b1b;
+  --text-color: #070606 ;
+  --box-shadow: #c1c1c1 ;
+
+  --main-color:  rgb(211, 192, 219);
+  --bg-color:  rgb(160, 34, 214);
+
+  
+
+  --gradient-bg: linear-gradient(156deg, rgba(111,39,236,1) 15%, rgba(191,141,212,1) 51%, rgba(255,202,202,1) 73%);
+/*--------------------------*/
+  --header-height: 3rem;
+
+  /*-------------------font--------------*/
+  --main-font: 'Poppins', sans-serif;
+  
+  --very-big-font-size: 5rem;
+  --big-font-size: 2rem;
+  --normal-font-size: .930rem;
+
+  --h1-size: 2rem;
+  --h2-size: 1.25rem;
+  --h3-size: 1.120rem;
+
+  --font-semi-bold: 600;
+  --font-medium:500;
+}
+
+/*=============== BACKGROUND EFFECT ===================*/
+body {
+  font-family: var(--main-font);
+  font-size: var(--normal-font-size);
+  height: 100vh;
+  width: 100%;
+  margin: 0 0 var(--header-height) 0;
+  background-color: var(--body-light-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/*===== styling of before and after body ===========*/
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  filter: blur(80px);
+  background: var(--bg-color);
+  z-index: -1;
+}
+
+/* The first purple blur cirle at the background */
+body::before {
+  top: -1rem;
+  left: -5rem;
+  transform: rotate(30deg);
+}
+
+
+/* the second purple circle */
+body::after {
+  bottom: 4rem;
+  right: -8rem;
+  transform: rotate(-70deg);
+}
+
+
+
+
+  /* ========================== MAKING THE LOADER ================================*/
+.loader  {
+    /* Fixing the position */
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     /* background and transition */
+    background: rgb(111,39,236);
+    background: var(--gradient-bg);
+    transition: opacity 5s, visibility 5s;
+    overflow: hidden;
+  }
+  
+  /* To be work on javascript.
+  the loader should be hidden after */
+  .loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  
+  .loader path {
+    stroke-dasharray: 100%;
+    stroke-dashoffset: 100%;
+    animation: line 7s ease forwards;
+  }
+  
+  /* creating a animation to fill for .loader path */
+  @keyframes line {
+    to {
+      stroke-dashoffset: 0;
+      fill: rgb(255, 255, 255);
+    }
+  }
+
+
+  
+
+ /*=============================== MENU BAR ========================*/ 
+
+ .header {
+  min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/*------------- styling the whole menu bar ----------------------*/
+nav {
+  background-color: var(--body-light-color);
+  position: fixed; 
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  height: 60px;
+  box-shadow: 0 1px 4px var(--box-shadow);
+  z-index: 1;
+  height: 60px;
+}
+
+/* separate class for this to position it properly and add different styling */
+.logo {
+  margin-top: 0px;
+  margin-right: 300px;
+  padding: 10px;
+  font-size: var(--big-font-size);
+  font-weight: 800;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+/* The b tags on my logo */
+b {
+  font-size: var(--big-font-size);
+  line-height: 50px;
+  color: var(--main-color);
+}
+
+/* make them fit all together and compress */
+ul {
+  display: flex;
+}
+
+/* spacing the list item */
+li {
+  list-style: none;
+  margin-right: 5px;
+  margin-top: 25px;
+}
+
+/* the list item with a */
+
+li a {
+  display: inline-block;
+  line-height: 10px;
+  text-decoration: none; /* remove the blue line link style on default */
+  color: var(--text-color-lighter);
+  font-size: var(--small-font-size);
+  padding: .5rem 1rem;
+  border-radius: 100vw;
+  letter-spacing: 1.5px;
+  position: relative; 
+  transition: .3s ease; /*for underline transition to be worked on */
+}
+
+li a::after { /* to used to style the hover too */
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--main-color);
+  transition: width .3s ease; 
+
+}
+
+li a:hover::after, .active::after {
+  width: 100%; /* sets a hover to 100% width */
+}
+
+/* positioning the icons */
+.navlight-dark {
+  cursor: pointer;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+
+/* adding a hover on both buttons */
+#theme-change-light:hover{
+  color:var(--main-color)
+}
+
+#theme-change-dark:hover{
+  color:var(--main-color)
+}
+
+
+/*==================== MAIN PART =================== */
+main{
+position:relative;
+width:100%;
+height:100vh 
+}
+
+/*================= INTRODUCTION ================*/
+
+/*spacing from the header */
+main .container1 {
+margin:100px;
+}
+
+/*spacing for all container */
+.container {
+  padding:2rem 0 4rem;
+  margin-top: 150px; 
+
+}
+
+.container1{
+border-bottom:var(--text-color) solid;
+padding-bottom: 200px; /* this is for me to fix the underline position */
+}
+
+
+/* for spacing */
+.intro1 {
+  width:50%
+}
+
+.intro2 {
+  width:80% ;
+}
+
+/* the introduction texts separate styling */
+.hello{
+  position: relative;
+  display: block;
+  font-size:var(--h3-size);
+  letter-spacing: 5px;
+  color: var(--text-color-lighter);
+}
+
+.container1 h1{
+font-size: var(--very-big-font-size);
+font-weight: var(--font-semi-bold);
+}
+
+.changetext {
+  color:var(--main-color)
+}
+
+/* sizing and positioning the image on the right */
+.introimg {
+  position: absolute;
+  width: 100%; 
+  max-width: 24rem;
+  bottom: 16.8rem;
+  right: 3.9rem;
+  border-radius: 50%;
+}
+
+/*======================== ABOUT ================*/
+
+.container2 {
+  margin-top: 480px; /* putting more space from the intro */
+  position: absolute;
+  /* centering */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: calc(100vh - var(--header-height));
+  width: 80%; 
+}
+
+.container2 h1 {  
+  font-size: var(--very-big-font-size);
+  text-transform: uppercase;
+  animation: color-animation 8s infinite;
+  text-align: center;
+  text-shadow: 0 0 5px var(--main-color), 0 0 10px var(--main-color);
+}
+
+.container2 h2{
+  font-size: var(--h2-size);
+  font-weight: var(--font-medium);
+  text-align: center;
+}
+
+
+/* changing color animation */
+@keyframes color-animation {
+  0% {
+    color: var(--text-color);
+  }
+  50% {
+    color: var(--main-color);
+  }
+  100% {
+    color: var(--text-color);
+  }
+}
+
+
+/*---- the info and image in the about ---------*/
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 2.5rem;
+  position: relative;
+  word-wrap: break-word;
+  opacity: 0; 
+  transform: translateX(100px); 
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; 
+}
+
+
+.about-content p {
+  margin-top: 50px;
+}
+
+.about-content img {
+  margin-right: 2.5rem; 
+}
+
+.about-content.fade-in { /*for on-scroll */
+  opacity: 1; 
+  transform: translateX(0); 
+}
+
+
+/*========================== SKILLS PART ==================*/
+.container3 {
+  margin-top: 1000px;
+}
+
+.container3 h1 {
+  font-size: var(--very-big-font-size);
+  text-transform: uppercase;
+  margin-left: 800px;
+  position: absolute;
+}
+
+/* positioning it at the back of the heading */
+.container3 svg {
+  margin-left: 300px;
+  margin-bottom: 30px;
+  z-index: 0;
+}
+
+/*  same animation as the loader but no fill */
+.container3 path {
+  stroke-dasharray: 100%;
+  stroke-dashoffset: 100%;
+  opacity: 0;
+}
+
+.container3.svg-scroll path {
+  animation: linein 5s ease forwards;
+  opacity: 1;
+}
+
+@keyframes linein {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/*-- text below the title skills --*/
+.instruction {
+  float: right;
+  margin-right: 150px;
+  font-size: var(--h2-size);
+}
+
+/*-- container for the boxes --*/
+.container3-1 {
+  position: relative;
+  width:1200px;
+  height:300px;
+  margin: 70px auto;
+  margin-left: 40px;
+
+
+}
+
+/*---- the 3 boxes -------*/
+.container3-1 .box {
+  box-sizing: border-box;
+  overflow: hidden;
+  width: calc(400px - 30px);
+  height: calc(300px - 30px); 
+  float: left;
+  margin: 15px;
+  position: relative;
+  color: #3b3333;
+  background-color:rgba(214, 197, 221, 1);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.container3-1 .box .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(148, 103, 168, 1);
+  transition: 0.5s;
+  z-index: 0;
+}
+
+/* making a circle hover */
+.container3-1 .box:hover .icon {
+  top: 8px;
+  left: calc(50% - 40px); 
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.container3-1 .box .icon .fa {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  transition: 0.5s;
+  background: rgba(148, 103, 168, 1) ;
+  position: absolute;
+}
+
+.container3-1 .box .icon .fa {
+  font-size: 40px;
+}
+
+/*for the text to slide in */
+.container3-1 .box .info {
+  position: absolute;
+  height: calc(100% - 100px); 
+  top: 100%;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-right: 20px;
+  opacity: 0;
+  transition: top 0.5s, opacity 0.5s;
+}
+
+/*slide in effect */
+.container3-1 .box:hover .info {
+  opacity: 1;
+  top: 100px;
+}
+
+.container3-1 .box .info h3 {
+  margin: 0;
+  padding: 0;
+}
+
+/*=================== PROJECTS PART ===================*/
+
+.container4 {/* spacing of skills to project */
+  display: flex;
+  margin-top: 300px;
+  margin-left: 100px;
+  margin-right: 90px;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 1;
+}
+
+.vertical-project { 
+  display: inline-block;
+  font-size: 30px;
+  color:var(--text-color);
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+  top:10px
+}
+
+/*outside box of 3 boxes */
+.boxes-container {
+  border-radius: 5px;
+  width: 900px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 0 15px var(--main-color);
+}
+
+
+/* the upper info positioning and style */
+.upper-info{
+  margin: 80px;
+
+}
+
+.upper-info h1{
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.upper-info h2{
+  font-size: var(--h2-size);
+  font-weight: var(--font-medium);
+}
+
+/*box one fixing the content position and the box size */
+.box1 {
+  width: 820px;
+  height: 440px;
+  background-color: var(--body-light-color);
+  box-shadow: 0 0 7px var(--box-shadow);
+  margin-bottom: 70px;
+  border-radius: 5px;
+}
+
+/*content inside the box */
+.project-info{
+  margin: 50px;
+  margin-top: 70px;
+}
+
+.project-info .fa{
+ font-size: 250px;
+ position: absolute;
+ margin-left: 30px;
+ margin-top: 10px;
+}
+
+
+.project-info h1{
+  display: inline-block;
+  font-size:30px;
+  float: right;
+  margin-right: 10px;
+  margin-left: 30px;
+  
+}
+.project-info h2{
+  opacity: 0;
+  font-size: 30px;
+  float: right;
+}
+
+/* h2 styling and on scroll animation */
+/* 'fade-in' class to be used at script */
+.box1 h2.fade-in {
+  opacity: 0; /* Initially set the opacity to 0 */
+  animation: fade-in-pro 2s forwards; /* Apply the fade-in animation with a duration of 1s */
+}
+
+/* different positioning of project-info2 */
+.box1 ,.project-info2 h2.fade-in {
+  opacity: 0; /* Initially set the opacity to 0 */
+  animation: fade-in-left 2s forwards; /* Apply the fade-in animation with a duration of 1s */
+}
+
+@keyframes fade-in-pro {
+  from {
+    opacity: 0;  /* starts with 0 opacity */
+    transform: translateX(20px); /* starts with this position */
+  }
+  to {
+    opacity: 1;  /* to making it visible */
+    transform: translateX(0);  /* to the original position */
+  }
+}
+
+/*different animation for project-info2 */
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px); /* Start from the left */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Move to the original position */
+  }
+}
+
+
+
+
+.project-info p{
+  font-size: var(--h2-size);
+  float: right;
+  margin-top: 20px;
+  margin-left: 320px;
+  margin-right: 70px;
+}
+
+/* different positioning. this one start at the left */
+.project-info3 p{
+  font-size: var(--h2-size);
+  float: right;
+  margin-top: 20px;
+  margin-left: 450px;
+  margin-right: 50px;
+}
+
+/* i decided to make a button */
+.button {
+  position: absolute;
+  margin-top: 240px;
+  margin-left: 400px;
+  background:var(--bg-color);
+  color: var(--bg-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  font-weight: var(--font-medium) ;
+  padding: 10px 20px;
+  transition: 0.5s;
+}
+
+.button2 { /*different position for this class */
+  margin-left: 470px;
+  margin-top: 260px;
+}
+
+/*styling the button */
+/*putting color and sizing hover */
+.button:hover {
+  letter-spacing: 0.25em;
+  background-color:var(--bg-color);
+  box-shadow:  0 0 35px var(--bg-color) ;
+  color:(--bg-color);
+}
+
+/*adding animation effect */
+.button::before {
+  content: '';
+  position: absolute;
+  inset:2px;
+  background-color: var(--body-light-color);
+}
+
+.button span {
+  position: relative;
+  z-index: 0;
+}
+
+.button i {
+  position: absolute;
+  inset:0;
+  display:block;
+}
+
+.button i::before {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 80%;
+  width: 10px;
+  height: 4px;
+  background-color:var(--body-light-color);
+  transform: translateX (-50%) skewX(325deg);
+  transition: 0.5s;
+}
+
+.button:hover i::before
+{
+  width: 20px;
+  left: 20%;
+}
+
+.button i::after {
+  content: '';
+  position: absolute;
+  bottom:0;
+  left: 20%;
+  width: 10px;
+  height: 4px;
+  background-color:var(--body-light-color);
+  transform: translateX (-50%) skewX(325deg);
+  transition: 0.5s;
+}
+
+.button:hover i::after
+{
+  width: 20px;
+  left: 80%;
+}
+
+/* same method of the inside content but this one starts at the left */
+.project-info2 {
+  margin: 50px;
+  position: relative;
+}
+
+.project-info2 .fa {
+  font-size: 250px;
+  position: absolute;
+  right: 20px;
+  top: 50px;
+}
+
+.project-info2 h1 {
+  display: inline-block;
+  font-size: 30px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.project-info2 h2 {
+  opacity: 0;
+  font-size: 30px;
+  float: left;
+  margin-left: 30px;
+}
+
+.project-info2 p {
+  font-size: var(--h2-size);
+  float: left;
+  margin-top: 20px;
+  margin-right: 400px;
+  margin-left: 30px;
+}
+
+
+.project-info2 .button {
+  left: 5px;
+  margin-left: 60px ;
+  margin-right: initial;
+  top: 90px;
+}
+
+
+/*================= IMG UNDER CONTACT ===============*/
+
+/*positioning  the image */
+ .flower {
+  position: absolute;
+  margin:100px;
+  margin-top: -64px;
+  z-index: -1;
+  margin-left: 240px;
+  filter: saturate(70%);
+ }
+
+/*========== CONTACT =================*/
+.container5 {
+  margin:90px;
+  font-size: var(--very-big-font-size);
+}
+
+/*putting the image in the left */
+.contact-me {
+  margin-top: 420px;
+  width: 40%;
+  border-radius: 45%;
+  border: #ffffff solid 5px;
+  opacity: 100%;
+  margin-left: 110px;
+}
+
+/*making the box */
+.contact-box{
+  margin-top: 370px;
+  float: right;
+  width: 500px;
+  height: 650px;
+  background-color:var(--body-light-color);
+  border: var(--text-color) solid 3.5px;
+  box-shadow: inset 0px 0px 8px 2px rgba(122, 120, 120, 0.5);
+}
+
+
+/* positioning the content inside */
+.contact-content{
+margin:50px;
+}
+
+/* styling the content */
+.contact-content h1{
+  font-size: 50px;
+
+}
+
+.contact-content p{
+  font-size: 15px;
+  margin-bottom: 7px;
+
+}
+
+.bold-contact{
+  color: var(--bg-color);
+  font-weight: var(--font-semi-bold);
+  font-size: var(--big-font-size);
+}
+
+/*position and styling of the 3 icons */
+.social-med  {
+  float: right;
+  writing-mode: vertical-lr;
+  font-size: 50px;
+  margin-top: 40px;
+  margin-right: 10px;
+  justify-content: flex;
+}
+
+/*removing the defauly style */
+.social-med a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+/* a hover that change the color */
+.social-med a:hover {
+  color: var(--main-color)
+}
+
+/*positioning the form in the contact box */
+.form {
+  width: 32%;
+  height: 30%;
+  position: absolute;
+  margin-left: 18px;
+  top: 5250px;
+}
+
+/*arranging and sizing the items */
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 2vw;
+  width: 80%;
+  max-width: 500px;
+}
+
+/*spacing and style */
+form input,
+form textarea {
+  border: 0;
+  margin: 6px 0;
+  padding: 15px;
+  border: solid 1px var(--text-color);
+  background-color: var(--body-light-color);
+  box-shadow: 0 0 15px var(--main-color);
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/*styling the button */
+button {
+  cursor: pointer;
+  padding: 15px;
+  background: var(--main-color);
+  color: var(--text-color);
+  font-size: 15px;
+  border: 0;
+  outline: none;
+  border-radius: 24px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+/*=========== FOOTER ==========*/
+/*positioning */
+footer {
+ margin-top:5100px;
+ text-align: center;
+ color: var(--text-color);
+ font-size:15px;
+ text-decoration: none;
+}
+/*=============== DARK MODE ============*/
+ 
+/*changing color variable and adding a class ".darktheme" to be used at my script */
+body.dark-theme{
+  --body-light-color: #1c1b1b;
+  --text-color:#fffffc ;
+  --text-color-lighter: #e1d7d7 ;
+  --box-shadow: #ffffff ;
+  
+  --main-color:  rgb(202, 157, 222);
+  --bg-color:  rgb(160, 34, 214);
+}
+
+/* changing image in light-dark mode */
+.flower .light-image {
+  display: block; /* using this will show light mode image by default */
+}
+
+.flower .dark-image {
+  display: none; /*using this will hide dark mode image by default */
+}
+
+/* the style in dark mode */
+body.dark-theme .flower .light-image {
+  display: none; /* hide light mode image in dark mode */
+}
+
+body.dark-theme .flower .dark-image {
+  display: block; /* show dark mode image in dark mode */
+}
+
+
+/* same method for my button icon */
+.navlight-dark .light-icon {
+  display: block;
+}
+
+.navlight-dark .dark-icon {
+  display: none;
+}
+
+body.dark-theme .navlight-dark .light-icon {
+  display: none;
+}
+
+body.dark-theme .navlight-dark .dark-icon {
+  display: block;
+}
