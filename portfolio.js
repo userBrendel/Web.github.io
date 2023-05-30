@@ -2,23 +2,21 @@
 
 ///----- LOADER SCRIPT ------///
 window.addEventListener("load", () => { // eventlistener that checks when the webpage load
-    const loader = document.querySelector(".loader"); 
-    document.body.style.overflow = "hidden"; // here i hide the scroll bar while loader is ongoing   
-    const content = document.getElementById("content");
-    
-    const delay = 4000; // making a variable that makes it 4sec delay to show class 'content'
+  const loader = document.querySelector(".loader"); 
+  document.body.style.overflow = "hidden"; // here i hide the scroll bar while loader is ongoing   
+  const content = document.getElementById("content");  
+  const delay = 4000; // making a variable that makes it 4sec delay to show class 'content'
+  loader.classList.add("loader-hidden"); //The loader-hidden CSS would add in. This will make the loader gone
   
-    loader.classList.add("loader-hidden"); //The loader-hidden CSS would add in. This will make the loader gone
-  
-    // This is to  delay before showing the content
-    setTimeout(() => {
-      content.classList.remove("loader-hidden"); //put in the CSS class '.loader-hidden'
-      document.body.style.overflow = ""; // After the loader is hidden it will restore scrolling
+// This is to  delay before showing the content
+setTimeout(() => {
+  content.classList.remove("loader-hidden"); //put in the CSS class '.loader-hidden'
+    document.body.style.overflow = ""; // After the loader is hidden it will restore scrolling
     }, delay);// the delay variable
   
-    loader.addEventListener("transitionend", () => { //eventlistener when it transition
-      document.body.removeChild(document.querySelector(".loader")); // remove loader
-      document.body.style.overflow = ""; //show content
+loader.addEventListener("transitionend", () => { //eventlistener when it transition
+    document.body.removeChild(document.querySelector(".loader")); // remove loader
+    document.body.style.overflow = ""; //show content
   });
   
 });
@@ -52,19 +50,19 @@ const navItems = document.querySelectorAll('header nav a');
 
 //-- a onscroll event // loop // collects data
 window.onscroll = () => {
-  sections.forEach(sec => {// for each section
+ sections.forEach(sec => {// for each section
   const top = window.scrollY; // This gets the scroll position 
   const offset = sec.offsetTop; //This gets the off set top
   const height = sec.offsetHeight; // This gets the height of the section
   const id = sec.getAttribute('id'); // This gets the id of the section // the id include the link within the page
 
   // checking the position
-   if (top >= offset && top < offset + height) {
+if (top >= offset && top < offset + height) {
     navItems.forEach(item => {
     item.classList.remove('active'); //remove the active when not in that section
 
   // checking if the menu item is matching with the sections href match the id
-   if (item.getAttribute('href').slice(1) === id) {
+if (item.getAttribute('href').slice(1) === id) {
     item.classList.add('active'); //add when it matches the menu item
         }
       });
@@ -102,7 +100,7 @@ targetSection.scrollIntoView({ behavior: 'smooth' }); // making the scroll smoot
 //here i did it for simple animation  that will only trigger when user is in the viewpoint
 
 window.addEventListener('scroll', function() { //eventlistener when scrolled
-  var aboutContentElements = document.querySelectorAll('.about-content');
+ var aboutContentElements = document.querySelectorAll('.about-content');
 
 aboutContentElements.forEach(function(element) { //defining and getting data // this variable is to be use at if statement
  var position = element.getBoundingClientRect();
@@ -114,6 +112,7 @@ aboutContentElements.forEach(function(element) { //defining and getting data // 
 if (position.top < windowHeight * 0.5 && position.bottom >= 0) { // to calculate if user position
       element.classList.add('fade-in'); // if visible the CSS fade-in would show/add
     } 
+
 else { 
       element.classList.remove('fade-in');// if not visible it will hide it / remove
     }
@@ -123,34 +122,36 @@ else {
 
 //Another on scroll animation for my svg // in quite different way
 window.addEventListener('scroll', function() {
-  var container = document.querySelector('.container3'); // defining variables
-  var path = container.querySelector('path');
-  var pathTop = path.getBoundingClientRect().top; // defining this to calculate the top position of path
-  var pathOffset = window.innerHeight * 0.8; // here i made a variable to show my desired position to trigger the animation
+ var container = document.querySelector('.container3'); // defining variables
+ var path = container.querySelector('path');
+ var pathTop = path.getBoundingClientRect().top; // defining this to calculate the top position of path
+ var pathOffset = window.innerHeight * 0.8; // here i made a variable to show my desired position to trigger the animation
 
  //if-else 
  //here as the pattern i'm doing. I calculate the viewpoint with my variables
-  if (pathTop - pathOffset <= 0) {
+if (pathTop - pathOffset <= 0) {
     container.classList.add('svg-scroll'); // If visible - add
   } 
-  else {
+  
+else {
     container.classList.remove('svg-scroll'); // If not - remove
   }
 });
 
 
 window.addEventListener('scroll', function() { //event listener when scrolled
-  var aboutContentElements = document.querySelectorAll('.box1 h2');
+ var aboutContentElements = document.querySelectorAll('.box1 h2');
 
-  aboutContentElements.forEach(function(element) {
-    var position = element.getBoundingClientRect();
-    var windowHeight = window.innerHeight;
+aboutContentElements.forEach(function(element) {
+  var position = element.getBoundingClientRect();
+  var windowHeight = window.innerHeight;
 
-    //The part where it will check if the content is visible portion of the viewpoint 
-    if (position.top < windowHeight * 0.5 && position.bottom >= 0) {
+//The part where it will check if the content is visible portion of the viewpoint 
+if (position.top < windowHeight * 0.5 && position.bottom >= 0) {
       element.classList.add('fade-in'); // if visible the CSS fade-in would show/add
     } 
-    else {
+
+else {
       element.classList.remove('fade-in');// if not visible it will hide it / remove
     }
   });
@@ -191,12 +192,12 @@ body.classList.remove('dark-theme');
 
 function sendEmail() { // to send the info at my email
 
-  //defining variable to be used 
-  var name = document.getElementById('name').value; // getting variables in Ids
-  var email = document.getElementById('email').value;
-  var msg = document.getElementById('msg').value;
-  //A message that well show at my email
-  var body = 'Name: ' + name + '<br/>' + 'Email: ' + email + '<br/>' + 'Subject: ' + msg + '<br/>' + 'Message: ' + msg + '<br/>' + 'Your message has been sent';
+//defining variable to be used 
+ var name = document.getElementById('name').value; // getting variables in Ids
+ var email = document.getElementById('email').value;
+ var msg = document.getElementById('msg').value;
+//A message that well show at my email
+ var body = 'Name: ' + name + '<br/>' + 'Email: ' + email + '<br/>' + 'Subject: ' + msg + '<br/>' + 'Message: ' + msg + '<br/>' + 'Your message has been sent';
 
   //i got this online 
   // i used the variable that i make here
