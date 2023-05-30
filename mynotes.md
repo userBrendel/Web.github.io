@@ -39,10 +39,6 @@ your website
 # Design
 -soft and chill like my personality!
 -3 colors! 
-   -#070606 (dark)
-   -#ed6b9a
-   -#00c1f2
-   -#fffffc (light)
 -a cute hover!
 -animations!
 
